@@ -1,0 +1,17 @@
+apiVersion: skaffold/v1beta14
+kind: Config
+build:
+  artifacts:
+  - image: mheers/static-egressip-gateway-manager
+    custom:
+      buildCommand: ./build.sh manager
+  - image: mheers/static-egressip-controller
+    custom:
+      buildCommand: ./build.sh controller
+
+deploy:
+  kubectl:
+    manifests:
+    - config/static-egressip-controller.yaml
+    - config/static-egressip-gateway-manager.yaml
+    - config/static-egressip-rbac.yaml

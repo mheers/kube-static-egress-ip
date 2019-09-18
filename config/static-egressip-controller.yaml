@@ -19,7 +19,7 @@ spec:
       serviceAccount: static-egressip-controller
       containers:
       - name: static-egressip-controller
-        image: nirmata/static-egressip-controller:latest
+        image: mheers/static-egressip-controller:latest
         imagePullPolicy: Always
         env:
         - name: NODE_NAME

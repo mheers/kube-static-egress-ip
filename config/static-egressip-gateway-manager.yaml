@@ -23,7 +23,7 @@ spec:
       serviceAccountName: static-egressip-controller
       containers:
       - name: static-egressip-gateway-manager
-        image: nirmata/static-egressip-gateway-manager:latest
+        image: mheers/static-egressip-gateway-manager:latest
         imagePullPolicy: Always
         env:
         - name: POD_IP

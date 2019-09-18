@@ -1,0 +1,6 @@
+FROM alpine:3.8
+RUN apk --no-cache add iproute2 iptables ipset
+WORKDIR /root/
+COPY ./static-egressip-gateway-manager /usr/local/bin/static-egressip-gateway-manager
+
+ENTRYPOINT ["/usr/local/bin/static-egressip-gateway-manager"]

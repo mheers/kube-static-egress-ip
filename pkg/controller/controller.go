@@ -266,7 +266,7 @@ func (c *Controller) doDirectorProcessing(clientset kubernetes.Interface, static
 	for i, rule := range staticEgressIP.Spec.Rules {
 		endpoint, err := c.endpointsLister.Endpoints(staticEgressIP.Namespace).Get(rule.ServiceName)
 		if err != nil {
-			glog.Errorf("Failed to get endpoints object for service %s due to %s", rule.ServiceName, err.Error())
+			glog.Errorf("Failed to get endpoints object for service '%s' due to: '%s'", rule.ServiceName, err.Error())
 		}
 		ips := make([]string, 0)
 		for _, epSubset := range endpoint.Subsets {
@@ -317,7 +317,7 @@ func (c *Controller) doGatewyProcessing(clientset kubernetes.Interface, staticEg
 		}
 		err = gateway.ConfigureStaticIP(rule.EgressIP + "/32")
 		if err != nil {
-			glog.Errorf("Failed to add egress IP %s for the staticegressip %s on the gateway due to %s", rule.EgressIP, staticEgressIP.Namespace+"/"+staticEgressIP.Name, err.Error())
+			glog.Errorf("Failed to add egress IP '%s' for the staticegressip '%s' on the gateway due to: '%s'", rule.EgressIP, staticEgressIP.Namespace+"/"+staticEgressIP.Name, err.Error())
 		}
 	}
 
