@@ -5,9 +5,15 @@ build:
   - image: mheers/static-egressip-gateway-manager
     custom:
       buildCommand: ./build.sh manager
+      dependencies:
+        paths:
+          - pkg
   - image: mheers/static-egressip-controller
     custom:
       buildCommand: ./build.sh controller
+      dependencies:
+        paths:
+          - pkg
 
 deploy:
   kubectl:
